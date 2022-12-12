@@ -19,10 +19,12 @@ let userSchema = new Schema({
 		type: [String],
 		default: []
 	},
-	todaysExpenseID: {
-		type: Schema.Types.ObjectId,
-		ref: "Expense"
-	}
+	currentExpensesIDs: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "Expense"
+		}
+	]
 })
 
 const userModel = mongoose.model('User', userSchema);

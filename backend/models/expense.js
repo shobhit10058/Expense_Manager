@@ -7,13 +7,12 @@ let expenseSchema = new Schema({
 		ref: "User"
 	},
 	amount: {
-		type: [
-			{
-				category: String,
-				value: Number
-			}
-		],
-		default: []
+		type: Number,
+		required: true
+	},
+	category: {
+		type: String,
+		required: true
 	},
 	date: {
 		type: Date,
