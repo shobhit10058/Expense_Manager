@@ -7,10 +7,11 @@ const genJWT = (data) => {
 }
 
 const verifyJWT = (token) => {
-	const data = null;
+	let data = null;
 	try {
 		data = jwt.verify(token, JWT_SECRET);
 	} catch (e) {
+		data = null;
 		console.log("error occurred", e);
 	}
 	return data;
