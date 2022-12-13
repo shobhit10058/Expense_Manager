@@ -15,6 +15,10 @@ let userSchema = new Schema({
 		type: Number,
 		default: 0
 	},
+	amountLeft: {
+		type: Number,
+		default: 0
+	},
 	categories: {
 		type: [String],
 		default: []
