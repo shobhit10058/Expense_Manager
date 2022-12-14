@@ -70,7 +70,7 @@ module.exports = {
 		try {
 			const { userID } = body;
 			const { days } = req.query;
-			const expenses = await Expense.find({ userID }).where('date').gt(dateBeforeXFromNow(days)).sort('date');
+			const expenses = await Expense.find({ userID }).where('date').gt(dateBeforeXFromNow(days)).sort('date').where('deleted').equals(false).select('-userID');
 			res.status(200).json({ data: expenses, message: "data retrieved" });
 		} catch (e) {
 			console.log(e);
