@@ -6,7 +6,6 @@ const getUserFromJWT = (req, res, next) => {
 	if(!data){
 		return res.status(401).json({message: "user not logged in"});
 	}
-	console.log({data})
 	req.body.userID = data.userID;
 	next();
 }

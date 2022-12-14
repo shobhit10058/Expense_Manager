@@ -44,7 +44,6 @@ module.exports = {
 		const { body } = req;
 		try {
 			const { budget, categories, userID} = body;
-			console.log({userID})
 			const user = await User.findById(userID);
 			if(budget)
 				user.budget = budget;
