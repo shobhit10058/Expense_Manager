@@ -46,9 +46,11 @@ module.exports = {
 			const { budget, categories, userID} = body;
 			console.log({userID})
 			const user = await User.findById(userID);
-			user.budget = budget;
-			user.amountLeft = budget;
-			user.categories = categories;
+			if(budget)
+				user.budget = budget;
+			user.amountLeft = user.budget;
+			if(categories)
+				user.categories = categories;
 			await Expense.deleteMany({ "_id": { "$in": user.currentExpensesIDs } });
 			user.currentExpensesIDs = [];
 			await user.save();
