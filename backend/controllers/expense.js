@@ -21,7 +21,6 @@ module.exports = {
 			await user.save();
 			res.status(200).json({ message: "expense saved", id: expense._id });
 		} catch (e) {
-			console.log(e);
 			res.status(400).json({ message: "expense not saved" });
 		}
 	},
@@ -59,7 +58,6 @@ module.exports = {
 				return res.status(400).json({ message: "budget not enough" });
 			}
 		} catch (e) {
-			console.log(e);
 			res.status(400).json({ message: "expense not updated" });
 		}
 	},
@@ -73,7 +71,6 @@ module.exports = {
 			const expenses = await Expense.find({ userID }).where('date').gt(dateBeforeXFromNow(days)).sort('date').where('deleted').equals(false).select('-userID');
 			res.status(200).json({ data: expenses, message: "data retrieved" });
 		} catch (e) {
-			console.log(e);
 			res.status(400).json({ message: "data could not be retrieved" });
 		}
 	}

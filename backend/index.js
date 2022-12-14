@@ -19,12 +19,8 @@ app.use('/expense', expenseRouter);
 mongoose.connect(process.env.DB_URI, { 
 	useNewUrlParser: true, 
 	useUnifiedTopology: true
-}, () => {
-	console.log('connected to db successfully.')
 })
 
 const PORT = process.env.PORT || 8000
 
-app.listen(PORT, () => {
-	console.log('server is running')
-})
+app.listen(PORT)

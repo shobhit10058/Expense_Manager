@@ -16,7 +16,6 @@ module.exports = {
 			const token = genJWT({ userID: newUser.id });
 			res.status(200).json({ token: token, message: "user details saved" });
 		} catch (e) {
-			console.log("error occured", e);
 			res.status(400).json({ message: "user details not saved" });
 		}
 	},
@@ -36,7 +35,6 @@ module.exports = {
 				}
 			}
 		} catch (e) {
-			console.log("error occured", e);
 			res.status(500).json({ message: "server error occurred" })
 		}
 	},
@@ -55,7 +53,6 @@ module.exports = {
 			await user.save();
 			res.status(200).json({ message: "setting updated" });
 		} catch (e) {
-			console.log(e);
 			res.status(400).json({ message: "setting not updated" });
 		}
 	},
@@ -77,7 +74,6 @@ module.exports = {
 			}
 			res.status(200).json({ data: data, message: "current expenses retrieved" });
 		} catch (e) {
-			console.log(e);
 			res.status(400).json({ message: "could not get current expenses" });
 		}
 	},
