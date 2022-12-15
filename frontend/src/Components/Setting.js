@@ -11,7 +11,7 @@ function Setting({ userDetails, setUserDetails, ...rest}) {
 		try {
 			const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/users/updateSetting`, { budget: form.budget });
 			if (res.status === 200) {
-				setUserDetails((userDetails) => { return { ...userDetails, amountLeft: form.budget, budget: form.budget } });
+				setUserDetails((userDetails) => { return { ...userDetails, amountLeft: parseInt(form.budget), budget: parseInt(form.budget) } });
 				alert('budget updated');
 			}
 		} catch (e) {
@@ -37,7 +37,7 @@ function Setting({ userDetails, setUserDetails, ...rest}) {
 		try {
 			const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/users/updateSetting`, { categories: form.categories });
 			if (res.status === 200) {
-				setUserDetails((userDetails) => { return { ...userDetails, amountLeft: userDetails.budget, form: form.categories } });
+				setUserDetails((userDetails) => { return { ...userDetails, amountLeft: userDetails.budget, categories: form.categories } });
 				alert('categories updated');
 			}
 		} catch (e) {

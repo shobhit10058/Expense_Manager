@@ -46,7 +46,10 @@ function Expense({ userDetails, setUserDetails, ...rest }) {
           }
         });
         const newExpense = { category: state.addCategory, amount: state.addExpenseAmount, id: data.id, deleted: false};
-        savedCurrentExpenses.current.push(newExpense);
+        if(!savedCurrentExpenses.current)
+          savedCurrentExpenses.current = [];
+        savedCurrentExpenses.current = [...savedCurrentExpenses.current, newExpense];
+        
         setState((state) => {
           return {
             leftCategories: [...state.leftCategories.filter((category) => category !== state.addCategory)],
@@ -58,6 +61,7 @@ function Expense({ userDetails, setUserDetails, ...rest }) {
         alert(data.message);
       }
     } catch (e) {
+      console.log(e)
       alert(e.response.data.message);
     }
   }
@@ -143,7 +147,7 @@ function Expense({ userDetails, setUserDetails, ...rest }) {
           </select>
           <div className="container d-flex justify-content-center align-items-center mt-2">
             <div className='p-2'><span className='text-capitalize fw-semibold'>Amount: </span></div>
-            <Form.Control type="number" placeholder="amount" value={state.addExpenseAmount} style={{ width: "100px" }} onChange={(e) => setState({ ...state, addExpenseAmount: e.target.value })} />
+            <Form.Control type="number" placeholder="amount" value={state.addExpenseAmount} style={{ width: "100px" }} onChange={(e) => setState({ ...state, addExpenseAmount: parseInt(e.target.value) })} />
             <Button className="btn-primary ms-2" onClick={addExpense}>Add</Button>
           </div>
         </div>
@@ -156,8 +160,8 @@ function Expense({ userDetails, setUserDetails, ...rest }) {
                   <div className="container d-flex justify-content-center align-items-center">
                     <div className='p-2'><span className={`text-capitalize fw-semibold ${expense.deleted ? "text-decoration-line-through":""}`}>{expense.category}</span></div>
                     <Form.Control type="number" placeholder="amount" value={expense.amount} style={{ width: "100px" }} onChange={(e) => handleChangeExpense(e, index)} />
-                    {!expense.deleted && <Button className="btn-warning ms-1" onClick={(e) => handleReset(e, index)}   disabled={expense.amount === savedCurrentExpenses.current[index].amount}>Reset</Button>}
-                    {!expense.deleted && <Button className="btn-danger ms-1" onClick={(e) => updateExpense(e, index)}  disabled={expense.amount === savedCurrentExpenses.current[index].amount}>Update</Button>}
+                    {!expense.deleted && <Button className="btn-warning ms-1" onClick={(e) => handleReset(e, index)}  >Reset</Button>}
+                    {!expense.deleted && <Button className="btn-danger ms-1" onClick={(e) => updateExpense(e, index)} >Update</Button>}
                     <Button className={`btn-${expense.deleted ? "danger":"primary"} ms-1`} onClick={(e) => toggleDeleteExpense(e, index)}>{expense.deleted ? "Undo Delete": "Delete"}</Button>
                   </div>
                 </div>
