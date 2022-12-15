@@ -11,11 +11,13 @@
 ### Backend
 1. The code for backend is available in backend folder.
 2. To run it, in the backend folder, run "npm i", then "npm run dev".
+3. A .env file also needs to be created with PORT -> the port for app, DB_URI -> mongo db database url, JWT_SECRET -> jwt secret string keys.
 <br> Dependencies: bcryptjs, cors, dotenv, express, jsonwebtoken, mongoose
 
 ### Frontend
 1. The code for frontend is available in frontend folder.
 2. To run it, in the frontend folder, run "npm i", then "npm start".
+3. A .env file also needs to be created with REACT_APP_BACKEND_URL which corresponds to url of backend.
 <br> Dependencies (other than those added by create-react-app): axios, react-boostrap, boostrap, react-router-dom, react-google-charts 
 
 ### Model
